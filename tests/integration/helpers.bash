@@ -374,6 +374,25 @@ function requires() {
 				skip_me=1
 			fi
 			;;
+		arch_x86_64)
+			if [ "$ARCH" != "x86_64" ]; then
+				skip_me=1
+			fi
+			;;
+		more_than_8_core)
+			local cpus
+			cpus=$(grep -c '^processor' /proc/cpuinfo)
+			if [ "$cpus" -le 8 ]; then
+				skip_me=1
+			fi
+			;;
+		psi)
+			# If PSI is not compiled in the kernel, the file will not exist.
+			# If PSI is compiled, but not enabled, read will fail with ENOTSUPP.
+			if ! cat /sys/fs/cgroup/cpu.pressure &>/dev/null; then
+				skip_me=1
+			fi
+			;;
 		*)
 			fail "BUG: Invalid requires $var."
 			;;
