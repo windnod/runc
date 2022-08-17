@@ -14,6 +14,8 @@ import (
 	"github.com/opencontainers/runc/libcontainer/configs"
 )
 
+const defaultKubeQoSCgroupRoot = "/sys/fs/cgroup/kubepods.slice"
+
 func isIoSet(r *configs.Resources) bool {
 	return r.BlkioWeight != 0 ||
 		len(r.BlkioWeightDevice) > 0 ||
@@ -42,6 +44,58 @@ func setIo(dirPath string, r *configs.Resources) error {
 		return nil
 	}
 
+	if err := writeBlkIOConfig(dirPath, r); err != nil {
+		return err
+	}
+
+	//非QoS Cgroup或weight为100或带有Throttle限制的容器都不能作为Pod级别的weight设置
+	if r.BlkioWeight == 100 ||
+		!cgroups.IsKubeQoSPath(dirPath) ||
+		r.BlkioThrottleWriteBpsDevice != nil ||
+		r.BlkioThrottleWriteIOPSDevice != nil ||
+		r.BlkioThrottleReadBpsDevice != nil ||
+		r.BlkioThrottleReadIOPSDevice != nil {
+		return nil
+	}
+
+	if err := writeBlkIOConfig(cgroups.KubeQoSTrimSuffixPath(dirPath), &configs.Resources{BlkioWeight: r.BlkioWeight, BlkioWeightDevice: r.BlkioWeightDevice}); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+/*
+func updateParentMemory(podPath string) error {
+	const file = "memory.max"
+
+	qoSMemorySize, err := os.ReadFile(cgroups.KubeQoSTrimSuffixPath(podPath) + "/" + file)
+	if err != nil {
+		return err
+	} else if !strings.Contains(string(qoSMemorySize), "max") {
+		return nil
+	}
+
+	nodeMemorySize, err := os.ReadFile(defaultKubeQoSCgroupRoot + "/" + file)
+	if err != nil {
+		return err
+	}
+
+	m, err := cgroups.OpenFile(cgroups.KubeQoSTrimSuffixPath(podPath), file, os.O_RDWR)
+	if err == nil {
+		defer m.Close()
+	} else if !os.IsNotExist(err) {
+		return err
+	}
+	if _, err := m.WriteString(string(nodeMemorySize)); err != nil {
+		return err
+	}
+
+	return nil
+}
+*/
+
+func writeBlkIOConfig(dirPath string, r *configs.Resources) error {
 	// If BFQ IO scheduler is available, use it.
 	var bfq *os.File
 	if r.BlkioWeight != 0 || len(r.BlkioWeightDevice) > 0 {
@@ -97,6 +151,53 @@ func setIo(dirPath string, r *configs.Resources) error {
 
 	return nil
 }
+
+/*
+func readBfqWeightFile(dirPath string) (*configs.Resources, error) {
+	r := new(configs.Resources)
+
+	f, err := cgroups.OpenFile(dirPath, BfqIOfile, os.O_RDONLY)
+	if err != nil {
+		return nil, err
+	}
+	defer f.Close()
+	scanner := bufio.NewScanner(f)
+	for i := 0; scanner.Scan(); i++ {
+		wd := new(configs.WeightDevice)
+		if i == 0 {
+			parts := strings.Fields(scanner.Text())
+			weight, err := strconv.ParseUint(parts[1], 10, 16)
+			if err != nil {
+				return nil, &parseError{Path: dirPath, File: BfqIOfile, Err: err}
+			}
+			r.BlkioWeight = uint16(weight)
+			continue
+		}
+
+		parts := strings.Fields(scanner.Text())
+		ioDevice := strings.Split(parts[0], ":")
+
+		wd.Major, err = strconv.ParseInt(ioDevice[0], 10, 64)
+		if err != nil {
+			return nil, &parseError{Path: dirPath, File: BfqIOfile, Err: err}
+		}
+		wd.Minor, err = strconv.ParseInt(ioDevice[1], 10, 64)
+		if err != nil {
+			return nil, &parseError{Path: dirPath, File: BfqIOfile, Err: err}
+		}
+		weight, err := strconv.ParseUint(parts[1], 10, 16)
+		if err != nil {
+			return nil, &parseError{Path: dirPath, File: BfqIOfile, Err: err}
+		}
+		wd.Weight = uint16(weight)
+
+		r.BlkioWeightDevice = append(r.BlkioWeightDevice, wd)
+
+	}
+
+	return r, nil
+}
+*/
 
 func readCgroup2MapFile(dirPath string, name string) (map[string][]string, error) {
 	ret := map[string][]string{}

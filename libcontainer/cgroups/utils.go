@@ -23,12 +23,32 @@ const (
 	hybridMountpoint  = "/sys/fs/cgroup/unified"
 )
 
+var kubeQoSPath = []string{"kubepods-besteffort", "kubepods-burstable", "kubepods-pod"}
+
 var (
 	isUnifiedOnce sync.Once
 	isUnified     bool
 	isHybridOnce  sync.Once
 	isHybrid      bool
 )
+
+func IsKubeQoSPath(path string) bool {
+	for _, p := range kubeQoSPath {
+		if strings.Contains(path, p) {
+			return true
+		}
+	}
+	return false
+}
+
+func KubeQoSTrimSuffixPath(path string) string {
+	if IsKubeQoSPath(path) {
+		s := strings.Split(path, "/")
+		return strings.Join(s[:len(s)-1], "/")
+	}
+
+	return path
+}
 
 // IsCgroup2UnifiedMode returns whether we are running in cgroup v2 unified mode.
 func IsCgroup2UnifiedMode() bool {
