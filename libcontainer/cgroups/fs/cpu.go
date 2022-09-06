@@ -15,6 +15,15 @@ import (
 
 type CpuGroup struct{}
 
+func isCpuBurstSupport(dirPath string) bool {
+	_, err := os.ReadFile(dirPath + "/cpu.max.burst")
+	if err != nil {
+		return false
+	} else {
+		return true
+	}
+}
+
 func (s *CpuGroup) Name() string {
 	return "cpu"
 }
@@ -84,6 +93,7 @@ func (s *CpuGroup) Set(path string, r *configs.Resources) error {
 			period = ""
 		}
 	}
+
 	if r.CpuQuota != 0 {
 		if err := cgroups.WriteFile(path, "cpu.cfs_quota_us", strconv.FormatInt(r.CpuQuota, 10)); err != nil {
 			return err
@@ -91,6 +101,14 @@ func (s *CpuGroup) Set(path string, r *configs.Resources) error {
 		if period != "" {
 			if err := cgroups.WriteFile(path, "cpu.cfs_period_us", period); err != nil {
 				return err
+			}
+		}
+		burst := strconv.FormatUint(r.CpuBurst, 10)
+		if burst != "" && isCpuBurstSupport(path) {
+			if err := cgroups.WriteFile(path, "cpu.cfs_burst_us", burst); err != nil {
+				if !errors.Is(err, unix.EINVAL) {
+					return err
+				}
 			}
 		}
 	}

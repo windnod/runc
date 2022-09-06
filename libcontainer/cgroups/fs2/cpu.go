@@ -2,6 +2,8 @@ package fs2
 
 import (
 	"bufio"
+	"errors"
+	"golang.org/x/sys/unix"
 	"os"
 	"strconv"
 
@@ -11,7 +13,16 @@ import (
 )
 
 func isCpuSet(r *configs.Resources) bool {
-	return r.CpuWeight != 0 || r.CpuQuota != 0 || r.CpuPeriod != 0
+	return r.CpuWeight != 0 || r.CpuQuota != 0 || r.CpuPeriod != 0 || r.CpuBurst != 0
+}
+
+func isCpuBurstSupport(dirPath string) bool {
+	_, err := os.ReadFile(dirPath + "/cpu.max.burst")
+	if err != nil {
+		return false
+	} else {
+		return true
+	}
 }
 
 func setCpu(dirPath string, r *configs.Resources) error {
@@ -40,6 +51,14 @@ func setCpu(dirPath string, r *configs.Resources) error {
 		str += " " + strconv.FormatUint(period, 10)
 		if err := cgroups.WriteFile(dirPath, "cpu.max", str); err != nil {
 			return err
+		}
+		burst := strconv.FormatUint(r.CpuBurst, 10)
+		if r.CpuQuota > 0 && burst != "" && isCpuBurstSupport(dirPath) {
+			if err := cgroups.WriteFile(dirPath, "cpu.max.burst", burst); err != nil {
+				if !errors.Is(err, unix.EINVAL) {
+					return err
+				}
+			}
 		}
 	}
 

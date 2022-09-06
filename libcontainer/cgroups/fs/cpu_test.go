@@ -45,6 +45,8 @@ func TestCpuSetBandWidth(t *testing.T) {
 	const (
 		quotaBefore     = 8000
 		quotaAfter      = 5000
+		burstBefore     = 2000
+		burstAfter      = 1000
 		periodBefore    = 10000
 		periodAfter     = 7000
 		rtRuntimeBefore = 8000
@@ -55,6 +57,7 @@ func TestCpuSetBandWidth(t *testing.T) {
 
 	writeFileContents(t, path, map[string]string{
 		"cpu.cfs_quota_us":  strconv.Itoa(quotaBefore),
+		"cpu.cfs_burst_us":  strconv.Itoa(burstBefore),
 		"cpu.cfs_period_us": strconv.Itoa(periodBefore),
 		"cpu.rt_runtime_us": strconv.Itoa(rtRuntimeBefore),
 		"cpu.rt_period_us":  strconv.Itoa(rtPeriodBefore),
