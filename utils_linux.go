@@ -15,11 +15,17 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
 	"golang.org/x/sys/unix"
+	"strings"
 
 	"github.com/opencontainers/runc/libcontainer"
 	"github.com/opencontainers/runc/libcontainer/configs"
 	"github.com/opencontainers/runc/libcontainer/specconv"
 	"github.com/opencontainers/runc/libcontainer/utils"
+)
+
+const (
+	containerNameAnnotation  string = "io.kubernetes.container.name"
+	debugContainerNamePrefix string = "debugger-"
 )
 
 var errEmptyID = errors.New("container id cannot be empty")
@@ -378,6 +384,13 @@ func startContainer(context *cli.Context, action CtAct, criuOpts *libcontainer.C
 	spec, err := setupSpec(context)
 	if err != nil {
 		return -1, err
+	}
+
+	if strings.HasPrefix(spec.Annotations[containerNameAnnotation], debugContainerNamePrefix) {
+		spec.Process.Capabilities.Permitted = append(spec.Process.Capabilities.Permitted, "CAP_SYS_PTRACE")
+		spec.Process.Capabilities.Inheritable = append(spec.Process.Capabilities.Inheritable, "CAP_SYS_PTRACE")
+		spec.Process.Capabilities.Bounding = append(spec.Process.Capabilities.Bounding, "CAP_SYS_PTRACE")
+		spec.Process.Capabilities.Effective = append(spec.Process.Capabilities.Effective, "CAP_SYS_PTRACE")
 	}
 
 	id := context.Args().First()
