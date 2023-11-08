@@ -1,3 +1,4 @@
+//go:build linux
 // +build linux
 
 // Package specconv implements conversion of specifications to libcontainer
@@ -15,13 +16,13 @@ import (
 
 	systemdDbus "github.com/coreos/go-systemd/v22/dbus"
 	dbus "github.com/godbus/dbus/v5"
-	"github.com/opencontainers/runc/libcontainer/cgroups"
-	"github.com/opencontainers/runc/libcontainer/configs"
-	"github.com/opencontainers/runc/libcontainer/devices"
-	"github.com/opencontainers/runc/libcontainer/seccomp"
-	libcontainerUtils "github.com/opencontainers/runc/libcontainer/utils"
 	"github.com/opencontainers/runtime-spec/specs-go"
 	"github.com/sirupsen/logrus"
+	"github.com/windnod/runc/libcontainer/cgroups"
+	"github.com/windnod/runc/libcontainer/configs"
+	"github.com/windnod/runc/libcontainer/devices"
+	"github.com/windnod/runc/libcontainer/seccomp"
+	libcontainerUtils "github.com/windnod/runc/libcontainer/utils"
 
 	"golang.org/x/sys/unix"
 )
@@ -52,17 +53,18 @@ var mountPropagationMapping = map[string]int{
 // all containers.
 //
 // XXX (cyphar)
-//    This behaviour is at the very least "questionable" (if not outright
-//    wrong) according to the runtime-spec.
 //
-//    Yes, we have to include certain devices other than the ones the user
-//    specifies, but several devices listed here are not part of the spec
-//    (including "mknod for any device"?!). In addition, these rules are
-//    appended to the user-provided set which means that users *cannot disable
-//    this behaviour*.
+//	This behaviour is at the very least "questionable" (if not outright
+//	wrong) according to the runtime-spec.
 //
-//    ... unfortunately I'm too scared to change this now because who knows how
-//    many people depend on this (incorrect and arguably insecure) behaviour.
+//	Yes, we have to include certain devices other than the ones the user
+//	specifies, but several devices listed here are not part of the spec
+//	(including "mknod for any device"?!). In addition, these rules are
+//	appended to the user-provided set which means that users *cannot disable
+//	this behaviour*.
+//
+//	... unfortunately I'm too scared to change this now because who knows how
+//	many people depend on this (incorrect and arguably insecure) behaviour.
 var AllowedDevices = []*devices.Device{
 	// allow mknod for any device
 	{

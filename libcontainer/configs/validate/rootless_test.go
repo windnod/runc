@@ -3,7 +3,7 @@ package validate
 import (
 	"testing"
 
-	"github.com/opencontainers/runc/libcontainer/configs"
+	"github.com/windnod/runc/libcontainer/configs"
 )
 
 func rootlessEUIDConfig() *configs.Config {

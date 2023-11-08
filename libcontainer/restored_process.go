@@ -1,3 +1,4 @@
+//go:build linux
 // +build linux
 
 package libcontainer
@@ -7,7 +8,7 @@ import (
 	"os"
 	"os/exec"
 
-	"github.com/opencontainers/runc/libcontainer/system"
+	"github.com/windnod/runc/libcontainer/system"
 )
 
 func newRestoredProcess(cmd *exec.Cmd, fds []string) (*restoredProcess, error) {

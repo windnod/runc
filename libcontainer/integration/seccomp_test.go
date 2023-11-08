@@ -1,3 +1,4 @@
+//go:build linux && cgo && seccomp
 // +build linux,cgo,seccomp
 
 package integration
@@ -7,9 +8,9 @@ import (
 	"syscall"
 	"testing"
 
-	"github.com/opencontainers/runc/libcontainer"
-	"github.com/opencontainers/runc/libcontainer/configs"
 	libseccomp "github.com/seccomp/libseccomp-golang"
+	"github.com/windnod/runc/libcontainer"
+	"github.com/windnod/runc/libcontainer/configs"
 )
 
 func TestSeccompDenyGetcwdWithErrno(t *testing.T) {

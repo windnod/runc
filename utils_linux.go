@@ -1,3 +1,4 @@
+//go:build linux
 // +build linux
 
 package main
@@ -10,13 +11,13 @@ import (
 	"path/filepath"
 	"strconv"
 
-	"github.com/opencontainers/runc/libcontainer"
-	"github.com/opencontainers/runc/libcontainer/cgroups/systemd"
-	"github.com/opencontainers/runc/libcontainer/configs"
-	"github.com/opencontainers/runc/libcontainer/specconv"
-	"github.com/opencontainers/runc/libcontainer/utils"
 	"github.com/opencontainers/runtime-spec/specs-go"
 	selinux "github.com/opencontainers/selinux/go-selinux"
+	"github.com/windnod/runc/libcontainer"
+	"github.com/windnod/runc/libcontainer/cgroups/systemd"
+	"github.com/windnod/runc/libcontainer/configs"
+	"github.com/windnod/runc/libcontainer/specconv"
+	"github.com/windnod/runc/libcontainer/utils"
 
 	"github.com/coreos/go-systemd/v22/activation"
 	"github.com/pkg/errors"

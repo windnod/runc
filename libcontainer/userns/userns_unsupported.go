@@ -1,8 +1,9 @@
+//go:build !linux
 // +build !linux
 
 package userns
 
-import "github.com/opencontainers/runc/libcontainer/user"
+import "github.com/windnod/runc/libcontainer/user"
 
 // runningInUserNS is a stub for non-Linux systems
 // Always returns false

@@ -1,3 +1,4 @@
+//go:build linux
 // +build linux
 
 package userns
@@ -6,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/opencontainers/runc/libcontainer/user"
+	"github.com/windnod/runc/libcontainer/user"
 )
 
 func TestUIDMapInUserNS(t *testing.T) {

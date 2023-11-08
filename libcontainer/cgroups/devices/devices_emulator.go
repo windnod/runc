@@ -1,3 +1,4 @@
+//go:build linux
 // +build linux
 
 // SPDX-License-Identifier: Apache-2.0
@@ -27,7 +28,7 @@ import (
 	"sort"
 	"strconv"
 
-	"github.com/opencontainers/runc/libcontainer/devices"
+	"github.com/windnod/runc/libcontainer/devices"
 
 	"github.com/pkg/errors"
 )

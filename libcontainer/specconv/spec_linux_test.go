@@ -1,3 +1,4 @@
+//go:build linux
 // +build linux
 
 package specconv
@@ -8,10 +9,10 @@ import (
 	"testing"
 
 	dbus "github.com/godbus/dbus/v5"
-	"github.com/opencontainers/runc/libcontainer/configs"
-	"github.com/opencontainers/runc/libcontainer/configs/validate"
-	"github.com/opencontainers/runc/libcontainer/devices"
 	"github.com/opencontainers/runtime-spec/specs-go"
+	"github.com/windnod/runc/libcontainer/configs"
+	"github.com/windnod/runc/libcontainer/configs/validate"
+	"github.com/windnod/runc/libcontainer/devices"
 	"golang.org/x/sys/unix"
 )
 

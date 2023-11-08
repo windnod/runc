@@ -7,7 +7,7 @@ import (
 	"os"
 	"sync"
 
-	"github.com/opencontainers/runc/libcontainer/utils"
+	"github.com/windnod/runc/libcontainer/utils"
 )
 
 var (

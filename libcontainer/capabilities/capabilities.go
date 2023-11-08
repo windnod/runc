@@ -1,3 +1,4 @@
+//go:build linux
 // +build linux
 
 package capabilities
@@ -6,9 +7,9 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/opencontainers/runc/libcontainer/configs"
 	"github.com/sirupsen/logrus"
 	"github.com/syndtr/gocapability/capability"
+	"github.com/windnod/runc/libcontainer/configs"
 )
 
 const allCapabilityTypes = capability.CAPS | capability.BOUNDING | capability.AMBIENT

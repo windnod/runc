@@ -1,3 +1,4 @@
+//go:build linux && cgo && seccomp
 // +build linux,cgo,seccomp
 
 package seccomp
@@ -6,8 +7,8 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/opencontainers/runc/libcontainer/configs"
-	"github.com/opencontainers/runc/libcontainer/seccomp/patchbpf"
+	"github.com/windnod/runc/libcontainer/configs"
+	"github.com/windnod/runc/libcontainer/seccomp/patchbpf"
 
 	libseccomp "github.com/seccomp/libseccomp-golang"
 	"golang.org/x/sys/unix"

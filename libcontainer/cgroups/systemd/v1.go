@@ -1,3 +1,4 @@
+//go:build linux
 // +build linux
 
 package systemd
@@ -14,9 +15,9 @@ import (
 	"github.com/godbus/dbus/v5"
 	"github.com/sirupsen/logrus"
 
-	"github.com/opencontainers/runc/libcontainer/cgroups"
-	"github.com/opencontainers/runc/libcontainer/cgroups/fs"
-	"github.com/opencontainers/runc/libcontainer/configs"
+	"github.com/windnod/runc/libcontainer/cgroups"
+	"github.com/windnod/runc/libcontainer/cgroups/fs"
+	"github.com/windnod/runc/libcontainer/configs"
 )
 
 type legacyManager struct {

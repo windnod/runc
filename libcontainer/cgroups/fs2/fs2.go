@@ -1,3 +1,4 @@
+//go:build linux
 // +build linux
 
 package fs2
@@ -7,10 +8,10 @@ import (
 	"os"
 	"strings"
 
-	"github.com/opencontainers/runc/libcontainer/cgroups"
-	"github.com/opencontainers/runc/libcontainer/cgroups/fscommon"
-	"github.com/opencontainers/runc/libcontainer/configs"
 	"github.com/pkg/errors"
+	"github.com/windnod/runc/libcontainer/cgroups"
+	"github.com/windnod/runc/libcontainer/cgroups/fscommon"
+	"github.com/windnod/runc/libcontainer/configs"
 )
 
 type manager struct {

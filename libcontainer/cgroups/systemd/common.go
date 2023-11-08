@@ -14,11 +14,11 @@ import (
 
 	systemdDbus "github.com/coreos/go-systemd/v22/dbus"
 	dbus "github.com/godbus/dbus/v5"
-	cgroupdevices "github.com/opencontainers/runc/libcontainer/cgroups/devices"
-	"github.com/opencontainers/runc/libcontainer/configs"
-	"github.com/opencontainers/runc/libcontainer/devices"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
+	cgroupdevices "github.com/windnod/runc/libcontainer/cgroups/devices"
+	"github.com/windnod/runc/libcontainer/configs"
+	"github.com/windnod/runc/libcontainer/devices"
 )
 
 const (

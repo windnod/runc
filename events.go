@@ -1,3 +1,4 @@
+//go:build linux
 // +build linux
 
 package main
@@ -10,10 +11,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/opencontainers/runc/libcontainer"
-	"github.com/opencontainers/runc/libcontainer/cgroups"
-	"github.com/opencontainers/runc/libcontainer/intelrdt"
-	"github.com/opencontainers/runc/types"
+	"github.com/windnod/runc/libcontainer"
+	"github.com/windnod/runc/libcontainer/cgroups"
+	"github.com/windnod/runc/libcontainer/intelrdt"
+	"github.com/windnod/runc/types"
 
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli"

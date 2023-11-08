@@ -1,3 +1,4 @@
+//go:build gofuzz
 // +build gofuzz
 
 package userns
@@ -5,7 +6,7 @@ package userns
 import (
 	"strings"
 
-	"github.com/opencontainers/runc/libcontainer/user"
+	"github.com/windnod/runc/libcontainer/user"
 )
 
 func FuzzUIDMap(data []byte) int {

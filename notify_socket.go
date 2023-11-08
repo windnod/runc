@@ -1,3 +1,4 @@
+//go:build linux
 // +build linux
 
 package main
@@ -11,9 +12,9 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/opencontainers/runc/libcontainer"
 	"github.com/opencontainers/runtime-spec/specs-go"
 	"github.com/urfave/cli"
+	"github.com/windnod/runc/libcontainer"
 )
 
 type notifySocket struct {

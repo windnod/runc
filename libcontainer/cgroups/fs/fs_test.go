@@ -1,3 +1,4 @@
+//go:build linux
 // +build linux
 
 package fs
@@ -7,8 +8,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/opencontainers/runc/libcontainer/cgroups"
-	"github.com/opencontainers/runc/libcontainer/configs"
+	"github.com/windnod/runc/libcontainer/cgroups"
+	"github.com/windnod/runc/libcontainer/configs"
 )
 
 func TestInvalidCgroupPath(t *testing.T) {

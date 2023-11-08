@@ -1,3 +1,4 @@
+//go:build linux
 // +build linux
 
 package libcontainer
@@ -6,9 +7,9 @@ import (
 	"path/filepath"
 	"unsafe"
 
-	"github.com/opencontainers/runc/libcontainer/cgroups/fscommon"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
+	"github.com/windnod/runc/libcontainer/cgroups/fscommon"
 	"golang.org/x/sys/unix"
 )
 

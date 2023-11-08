@@ -1,8 +1,8 @@
 package types
 
 import (
-	"github.com/opencontainers/runc/libcontainer/cgroups"
-	"github.com/opencontainers/runc/libcontainer/intelrdt"
+	"github.com/windnod/runc/libcontainer/cgroups"
+	"github.com/windnod/runc/libcontainer/intelrdt"
 )
 
 // Event struct for encoding the event data to json.

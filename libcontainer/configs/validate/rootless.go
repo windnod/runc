@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/opencontainers/runc/libcontainer/configs"
+	"github.com/windnod/runc/libcontainer/configs"
 )
 
 // rootlessEUID makes sure that the config can be applied when runc

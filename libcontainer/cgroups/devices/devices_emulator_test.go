@@ -23,7 +23,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/opencontainers/runc/libcontainer/devices"
+	"github.com/windnod/runc/libcontainer/devices"
 )
 
 func TestDeviceEmulatorLoad(t *testing.T) {

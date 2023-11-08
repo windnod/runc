@@ -1,3 +1,4 @@
+//go:build linux
 // +build linux
 
 package main
@@ -6,9 +7,9 @@ import (
 	"encoding/json"
 	"os"
 
-	"github.com/opencontainers/runc/libcontainer"
-	"github.com/opencontainers/runc/libcontainer/utils"
 	"github.com/urfave/cli"
+	"github.com/windnod/runc/libcontainer"
+	"github.com/windnod/runc/libcontainer/utils"
 )
 
 var stateCommand = cli.Command{

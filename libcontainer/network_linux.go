@@ -1,3 +1,4 @@
+//go:build linux
 // +build linux
 
 package libcontainer
@@ -9,9 +10,9 @@ import (
 	"path/filepath"
 	"strconv"
 
-	"github.com/opencontainers/runc/libcontainer/configs"
-	"github.com/opencontainers/runc/types"
 	"github.com/vishvananda/netlink"
+	"github.com/windnod/runc/libcontainer/configs"
+	"github.com/windnod/runc/types"
 )
 
 var strategies = map[string]networkStrategy{

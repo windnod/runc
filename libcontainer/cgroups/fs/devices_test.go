@@ -1,3 +1,4 @@
+//go:build linux
 // +build linux
 
 package fs
@@ -5,8 +6,8 @@ package fs
 import (
 	"testing"
 
-	"github.com/opencontainers/runc/libcontainer/cgroups/fscommon"
-	"github.com/opencontainers/runc/libcontainer/devices"
+	"github.com/windnod/runc/libcontainer/cgroups/fscommon"
+	"github.com/windnod/runc/libcontainer/devices"
 )
 
 func TestDevicesSetAllow(t *testing.T) {

@@ -1,3 +1,4 @@
+//go:build linux
 // +build linux
 
 package main
@@ -9,14 +10,14 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/opencontainers/runc/libcontainer/cgroups"
 	"github.com/sirupsen/logrus"
+	"github.com/windnod/runc/libcontainer/cgroups"
 
 	"github.com/docker/go-units"
-	"github.com/opencontainers/runc/libcontainer/configs"
-	"github.com/opencontainers/runc/libcontainer/intelrdt"
 	"github.com/opencontainers/runtime-spec/specs-go"
 	"github.com/urfave/cli"
+	"github.com/windnod/runc/libcontainer/configs"
+	"github.com/windnod/runc/libcontainer/intelrdt"
 )
 
 func i64Ptr(i int64) *int64   { return &i }

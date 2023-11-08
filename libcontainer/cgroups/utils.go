@@ -1,3 +1,4 @@
+//go:build linux
 // +build linux
 
 package cgroups
@@ -15,8 +16,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/opencontainers/runc/libcontainer/userns"
 	"github.com/sirupsen/logrus"
+	"github.com/windnod/runc/libcontainer/userns"
 	"golang.org/x/sys/unix"
 )
 
@@ -144,8 +145,10 @@ func readProcsFile(file string) ([]int, error) {
 
 // ParseCgroupFile parses the given cgroup file, typically /proc/self/cgroup
 // or /proc/<pid>/cgroup, into a map of subsystems to cgroup paths, e.g.
-//   "cpu": "/user.slice/user-1000.slice"
-//   "pids": "/user.slice/user-1000.slice"
+//
+//	"cpu": "/user.slice/user-1000.slice"
+//	"pids": "/user.slice/user-1000.slice"
+//
 // etc.
 //
 // Note that for cgroup v2 unified hierarchy, there are no per-controller

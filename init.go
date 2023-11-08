@@ -6,11 +6,11 @@ import (
 	"runtime"
 	"strconv"
 
-	"github.com/opencontainers/runc/libcontainer"
-	"github.com/opencontainers/runc/libcontainer/logs"
-	_ "github.com/opencontainers/runc/libcontainer/nsenter"
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
+	"github.com/windnod/runc/libcontainer"
+	"github.com/windnod/runc/libcontainer/logs"
+	_ "github.com/windnod/runc/libcontainer/nsenter"
 )
 
 func init() {

@@ -5,8 +5,8 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/opencontainers/runc/libcontainer"
-	_ "github.com/opencontainers/runc/libcontainer/nsenter"
+	"github.com/windnod/runc/libcontainer"
+	_ "github.com/windnod/runc/libcontainer/nsenter"
 
 	"github.com/sirupsen/logrus"
 )

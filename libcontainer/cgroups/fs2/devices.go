@@ -1,13 +1,14 @@
+//go:build linux
 // +build linux
 
 package fs2
 
 import (
-	"github.com/opencontainers/runc/libcontainer/cgroups/ebpf"
-	"github.com/opencontainers/runc/libcontainer/cgroups/ebpf/devicefilter"
-	"github.com/opencontainers/runc/libcontainer/configs"
-	"github.com/opencontainers/runc/libcontainer/devices"
-	"github.com/opencontainers/runc/libcontainer/userns"
+	"github.com/windnod/runc/libcontainer/cgroups/ebpf"
+	"github.com/windnod/runc/libcontainer/cgroups/ebpf/devicefilter"
+	"github.com/windnod/runc/libcontainer/configs"
+	"github.com/windnod/runc/libcontainer/devices"
+	"github.com/windnod/runc/libcontainer/userns"
 
 	"github.com/pkg/errors"
 	"golang.org/x/sys/unix"

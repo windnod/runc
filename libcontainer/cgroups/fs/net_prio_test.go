@@ -1,3 +1,4 @@
+//go:build linux
 // +build linux
 
 package fs
@@ -6,8 +7,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/opencontainers/runc/libcontainer/cgroups/fscommon"
-	"github.com/opencontainers/runc/libcontainer/configs"
+	"github.com/windnod/runc/libcontainer/cgroups/fscommon"
+	"github.com/windnod/runc/libcontainer/configs"
 )
 
 var prioMap = []*configs.IfPrioMap{

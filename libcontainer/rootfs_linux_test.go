@@ -1,3 +1,4 @@
+//go:build linux
 // +build linux
 
 package libcontainer
@@ -5,7 +6,7 @@ package libcontainer
 import (
 	"testing"
 
-	"github.com/opencontainers/runc/libcontainer/configs"
+	"github.com/windnod/runc/libcontainer/configs"
 )
 
 func TestCheckMountDestOnProc(t *testing.T) {

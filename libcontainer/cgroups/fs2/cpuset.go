@@ -1,10 +1,11 @@
+//go:build linux
 // +build linux
 
 package fs2
 
 import (
-	"github.com/opencontainers/runc/libcontainer/cgroups"
-	"github.com/opencontainers/runc/libcontainer/configs"
+	"github.com/windnod/runc/libcontainer/cgroups"
+	"github.com/windnod/runc/libcontainer/configs"
 )
 
 func isCpusetSet(r *configs.Resources) bool {

@@ -11,9 +11,9 @@ import (
 	"strconv"
 
 	"github.com/cilium/ebpf/asm"
-	devicesemulator "github.com/opencontainers/runc/libcontainer/cgroups/devices"
-	"github.com/opencontainers/runc/libcontainer/devices"
 	"github.com/pkg/errors"
+	devicesemulator "github.com/windnod/runc/libcontainer/cgroups/devices"
+	"github.com/windnod/runc/libcontainer/devices"
 	"golang.org/x/sys/unix"
 )
 

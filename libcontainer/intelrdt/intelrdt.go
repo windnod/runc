@@ -1,3 +1,4 @@
+//go:build linux
 // +build linux
 
 package intelrdt
@@ -15,7 +16,7 @@ import (
 	"sync"
 
 	"github.com/moby/sys/mountinfo"
-	"github.com/opencontainers/runc/libcontainer/configs"
+	"github.com/windnod/runc/libcontainer/configs"
 )
 
 /*

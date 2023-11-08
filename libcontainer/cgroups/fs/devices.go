@@ -1,3 +1,4 @@
+//go:build linux
 // +build linux
 
 package fs
@@ -7,11 +8,11 @@ import (
 	"errors"
 	"reflect"
 
-	"github.com/opencontainers/runc/libcontainer/cgroups"
-	cgroupdevices "github.com/opencontainers/runc/libcontainer/cgroups/devices"
-	"github.com/opencontainers/runc/libcontainer/configs"
-	"github.com/opencontainers/runc/libcontainer/devices"
-	"github.com/opencontainers/runc/libcontainer/userns"
+	"github.com/windnod/runc/libcontainer/cgroups"
+	cgroupdevices "github.com/windnod/runc/libcontainer/cgroups/devices"
+	"github.com/windnod/runc/libcontainer/configs"
+	"github.com/windnod/runc/libcontainer/devices"
+	"github.com/windnod/runc/libcontainer/userns"
 )
 
 type DevicesGroup struct {

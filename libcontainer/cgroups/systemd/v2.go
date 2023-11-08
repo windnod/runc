@@ -1,3 +1,4 @@
+//go:build linux
 // +build linux
 
 package systemd
@@ -13,11 +14,11 @@ import (
 
 	systemdDbus "github.com/coreos/go-systemd/v22/dbus"
 	securejoin "github.com/cyphar/filepath-securejoin"
-	"github.com/opencontainers/runc/libcontainer/cgroups"
-	"github.com/opencontainers/runc/libcontainer/cgroups/fs2"
-	"github.com/opencontainers/runc/libcontainer/configs"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
+	"github.com/windnod/runc/libcontainer/cgroups"
+	"github.com/windnod/runc/libcontainer/cgroups/fs2"
+	"github.com/windnod/runc/libcontainer/configs"
 )
 
 type unifiedManager struct {

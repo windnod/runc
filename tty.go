@@ -1,3 +1,4 @@
+//go:build linux
 // +build linux
 
 package main
@@ -10,9 +11,9 @@ import (
 	"sync"
 
 	"github.com/containerd/console"
-	"github.com/opencontainers/runc/libcontainer"
-	"github.com/opencontainers/runc/libcontainer/utils"
 	"github.com/pkg/errors"
+	"github.com/windnod/runc/libcontainer"
+	"github.com/windnod/runc/libcontainer/utils"
 )
 
 type tty struct {

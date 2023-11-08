@@ -1,9 +1,10 @@
+//go:build linux
 // +build linux
 
 package cgroups
 
 import (
-	"github.com/opencontainers/runc/libcontainer/configs"
+	"github.com/windnod/runc/libcontainer/configs"
 )
 
 type Manager interface {

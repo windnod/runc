@@ -10,7 +10,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/opencontainers/runc/libcontainer"
+	"github.com/windnod/runc/libcontainer"
 	"golang.org/x/sys/unix"
 )
 

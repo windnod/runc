@@ -1,3 +1,4 @@
+//go:build linux
 // +build linux
 
 package fscommon
@@ -10,7 +11,7 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/opencontainers/runc/libcontainer/cgroups"
+	"github.com/windnod/runc/libcontainer/cgroups"
 )
 
 const (

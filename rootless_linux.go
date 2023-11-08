@@ -1,3 +1,4 @@
+//go:build linux
 // +build linux
 
 package main
@@ -5,10 +6,10 @@ package main
 import (
 	"os"
 
-	"github.com/opencontainers/runc/libcontainer/cgroups/systemd"
-	"github.com/opencontainers/runc/libcontainer/userns"
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
+	"github.com/windnod/runc/libcontainer/cgroups/systemd"
+	"github.com/windnod/runc/libcontainer/userns"
 )
 
 func shouldUseRootlessCgroupManager(context *cli.Context) (bool, error) {

@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/opencontainers/runc/libcontainer/utils"
+	"github.com/windnod/runc/libcontainer/utils"
 )
 
 type syncType string
@@ -18,10 +18,12 @@ type syncType string
 // [  child  ] <-> [   parent   ]
 //
 // procHooks   --> [run hooks]
-//             <-- procResume
+//
+//	<-- procResume
 //
 // procReady   --> [final setup]
-//             <-- procRun
+//
+//	<-- procRun
 const (
 	procError  syncType = "procError"
 	procReady  syncType = "procReady"

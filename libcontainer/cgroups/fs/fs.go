@@ -1,3 +1,4 @@
+//go:build linux
 // +build linux
 
 package fs
@@ -8,11 +9,11 @@ import (
 	"path/filepath"
 	"sync"
 
-	"github.com/opencontainers/runc/libcontainer/cgroups"
-	"github.com/opencontainers/runc/libcontainer/cgroups/fscommon"
-	"github.com/opencontainers/runc/libcontainer/configs"
-	libcontainerUtils "github.com/opencontainers/runc/libcontainer/utils"
 	"github.com/pkg/errors"
+	"github.com/windnod/runc/libcontainer/cgroups"
+	"github.com/windnod/runc/libcontainer/cgroups/fscommon"
+	"github.com/windnod/runc/libcontainer/configs"
+	libcontainerUtils "github.com/windnod/runc/libcontainer/utils"
 	"golang.org/x/sys/unix"
 )
 

@@ -1,4 +1,4 @@
-module github.com/opencontainers/runc
+module github.com/windnod/runc
 
 go 1.13
 

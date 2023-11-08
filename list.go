@@ -1,3 +1,4 @@
+//go:build linux
 // +build linux
 
 package main
@@ -13,10 +14,10 @@ import (
 	"text/tabwriter"
 	"time"
 
-	"github.com/opencontainers/runc/libcontainer"
-	"github.com/opencontainers/runc/libcontainer/user"
-	"github.com/opencontainers/runc/libcontainer/utils"
 	"github.com/urfave/cli"
+	"github.com/windnod/runc/libcontainer"
+	"github.com/windnod/runc/libcontainer/user"
+	"github.com/windnod/runc/libcontainer/utils"
 )
 
 const formatOptions = `table or json`

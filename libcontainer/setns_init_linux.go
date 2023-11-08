@@ -1,3 +1,4 @@
+//go:build linux
 // +build linux
 
 package libcontainer
@@ -6,13 +7,13 @@ import (
 	"os"
 	"runtime"
 
-	"github.com/opencontainers/runc/libcontainer/apparmor"
-	"github.com/opencontainers/runc/libcontainer/keys"
-	"github.com/opencontainers/runc/libcontainer/seccomp"
-	"github.com/opencontainers/runc/libcontainer/system"
 	"github.com/opencontainers/selinux/go-selinux"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
+	"github.com/windnod/runc/libcontainer/apparmor"
+	"github.com/windnod/runc/libcontainer/keys"
+	"github.com/windnod/runc/libcontainer/seccomp"
+	"github.com/windnod/runc/libcontainer/system"
 	"golang.org/x/sys/unix"
 )
 

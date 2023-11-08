@@ -1,3 +1,4 @@
+//go:build linux && cgo && seccomp
 // +build linux,cgo,seccomp
 
 package patchbpf
@@ -10,8 +11,8 @@ import (
 	"runtime"
 	"unsafe"
 
-	"github.com/opencontainers/runc/libcontainer/configs"
-	"github.com/opencontainers/runc/libcontainer/utils"
+	"github.com/windnod/runc/libcontainer/configs"
+	"github.com/windnod/runc/libcontainer/utils"
 
 	"github.com/pkg/errors"
 	libseccomp "github.com/seccomp/libseccomp-golang"

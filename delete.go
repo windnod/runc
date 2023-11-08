@@ -1,3 +1,4 @@
+//go:build !solaris
 // +build !solaris
 
 package main
@@ -9,8 +10,8 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/opencontainers/runc/libcontainer"
 	"github.com/urfave/cli"
+	"github.com/windnod/runc/libcontainer"
 
 	"golang.org/x/sys/unix"
 )

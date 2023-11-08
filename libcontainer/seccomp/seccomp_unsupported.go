@@ -1,3 +1,4 @@
+//go:build !linux || !cgo || !seccomp
 // +build !linux !cgo !seccomp
 
 package seccomp
@@ -5,7 +6,7 @@ package seccomp
 import (
 	"errors"
 
-	"github.com/opencontainers/runc/libcontainer/configs"
+	"github.com/windnod/runc/libcontainer/configs"
 )
 
 var ErrSeccompNotEnabled = errors.New("seccomp: config provided but seccomp not supported")

@@ -1,3 +1,4 @@
+//go:build linux
 // +build linux
 
 package main
@@ -11,11 +12,11 @@ import (
 	"strconv"
 
 	criu "github.com/checkpoint-restore/go-criu/v5/rpc"
-	"github.com/opencontainers/runc/libcontainer"
-	"github.com/opencontainers/runc/libcontainer/userns"
 	"github.com/opencontainers/runtime-spec/specs-go"
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
+	"github.com/windnod/runc/libcontainer"
+	"github.com/windnod/runc/libcontainer/userns"
 	"golang.org/x/sys/unix"
 )
 
