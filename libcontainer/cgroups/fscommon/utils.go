@@ -7,6 +7,7 @@ import (
 	"errors"
 	"fmt"
 	"math"
+	"path"
 	"strconv"
 	"strings"
 
@@ -23,6 +24,19 @@ var (
 	// Deprecated: use cgroups.WriteFile instead.
 	WriteFile = cgroups.WriteFile
 )
+
+// ParseError records a parse error details, including the file path.
+type ParseError struct {
+	Path string
+	File string
+	Err  error
+}
+
+func (e *ParseError) Error() string {
+	return "unable to parse " + path.Join(e.Path, e.File) + ": " + e.Err.Error()
+}
+
+func (e *ParseError) Unwrap() error { return e.Err }
 
 // ParseUint converts a string to an uint64 integer.
 // Negative values are returned at zero as, due to kernel bugs,
